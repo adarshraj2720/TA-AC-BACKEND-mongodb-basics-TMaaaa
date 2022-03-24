@@ -3,7 +3,13 @@ writeCode
 Write code to execute below expressions.
 
 1. Create a database named `blog`.
+
+Ans-- use blog
+
 2. Create a collection called 'articles'.
+
+Ans-- db.createCollection('articles')
+
 3. Insert multiple documents(at least 3) into articles. It should have fields
 
 - title as string
@@ -30,18 +36,98 @@ Write code to execute below expressions.
   },
   tags: ['js', 'mongo']
 }
+
+Ans-- db.articles.insertMany(deatils)
+
+var deatils =[
+  {
+  _id: 1,
+  title: 'object',
+  details: 'object-properties',
+  author: {
+    name: 'aman',
+    email: 'aman@gmail',
+    age: 26
+  },
+  tags: ['node', 'mongo']
+},
+{
+  _id:2,
+  title: 'function',
+  details: 'function-expression',
+  author: {
+    name: 'aditya',
+    email: 'aditya@gmail',
+    age: 25
+  },
+  tags: ['scss', 'java']
+},
+{
+  _id: 3,
+  title: 'box-sizing',
+  details: 'box-sizing-properties',
+  author: {
+    name: 'sahil',
+    email: 'sahil@gmail',
+    age: 20
+  },
+  tags: ['HTML', 'css']
+},
+{
+  _id: 4,
+  title: 'promises',
+  details: 'reject',
+  author: {
+    name: 'Adarsh',
+    email: 'adarsh@gmail',
+    age: 22
+  },
+  tags: ['js', 'ad.js']
+}
+]
+
+
+
 ```
 
 4. Find all the articles using `db.COLLECTION_NAME.find()`
+
+Ans-- db.articles.find().pretty()
+      db.articles.find()
+
 5. Find a document using \_id field.
+
+Ans-- db.articles.find({"_id":4}).pretty()
+
 6. 1. Find documents using title
+
+Ans--db.articles.find({"title":"box-sizing"}).pretty()
+
 7. 2. Find documents using author's name field.
+
+Ans--db.articles.find({"author":{"name":"sahil"}})
+
 8. Find document using a specific tag.
 
+Ans--db.articles.find({tags:['js', 'ad.js']}).pretty()
+      db.articles.find({tags:'HTML'}).pretty()
+
 9. Update title of a document using its \_id field.
+
+As--db.articles.update({_id:3},{$set:{title:'flexbox'}})
+
 10. Update a author's name using article's title.
+
+Ans-- db.articles.update({title:'promises'},{$set:{author:{name:'AdarshRaj'}}})
+
 11. rename details field to description from all articles in articles collection.
+
+Ans--
+
+
 12. Add additional tag in a specific document.
+
+Ans--
 
 13. Update an article's title using $set and without $set.
 
@@ -49,7 +135,11 @@ Write code to execute below expressions.
 
 13. find an article using title and increment it's auhtor's age by 5.
 
+Ans--
+
 14. Delete a document using \_id field with `db.COLLECTION_NAME.remove()`.
+
+Ans-- db.articles.remove({_id:2})
 
 // Sample data
 
@@ -168,6 +258,18 @@ db.users.insertMany([
 Insert above data into database to perform below queries:-
 
 - Find all males who play cricket.
+
+Ans--db.users.find({gender:"Male",sports:"cricket"}).pretty()
+      
+
+
 - Update user with extra golf field in sports array whose name is "Steve Ortega".
+
+Ans--db.users.update({name:"Steve Ortega"},{$set{"sports":"golf"}})
+
+
 - Find all users who play either 'football' or 'cricket'.
+
+Ans--db.users.find({sports:{$in:["football","cricket"]}})
+
 - Find all users whose name includes 'ri' in their name.
