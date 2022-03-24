@@ -19,3 +19,4 @@ Ans-- db.himalayas.find().pretty()
 - find a single document using name
 
 Ans-- db.himalayas.findOne({name:'himachal'})
+        db.himalayas.findOne({name:'himachal'})
