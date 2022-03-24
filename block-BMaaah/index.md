@@ -105,7 +105,7 @@ Ans--db.articles.find({"title":"box-sizing"}).pretty()
 
 7. 2. Find documents using author's name field.
 
-Ans--db.articles.find({"author":{"name":"sahil"}})
+Ans--db.articles.find({"author.name":"sahil"}})
 
 8. Find document using a specific tag.
 
@@ -118,16 +118,16 @@ As--db.articles.update({_id:3},{$set:{title:'flexbox'}})
 
 10. Update a author's name using article's title.
 
-Ans-- db.articles.update({title:'promises'},{$set:{author:{name:'AdarshRaj'}}})
+Ans-- db.articles.update({title:'promises'},{$set:{"author.name":'AdarshRaj'}})
 
 11. rename details field to description from all articles in articles collection.
 
-Ans--
+Ans-- db.articles.update({},{$rename: {details:"description"}},{multi:true})
 
 
 12. Add additional tag in a specific document.
 
-Ans--
+Ans-- db.articles.update({title:"function",},{$push:{tags:"ruby"}})
 
 13. Update an article's title using $set and without $set.
 
@@ -135,7 +135,7 @@ Ans--
 
 13. find an article using title and increment it's auhtor's age by 5.
 
-Ans--
+Ans--db.articles.update({title:"function"},{$inc:{"author.age":5}})
 
 14. Delete a document using \_id field with `db.COLLECTION_NAME.remove()`.
 
@@ -265,7 +265,7 @@ Ans--db.users.find({gender:"Male",sports:"cricket"}).pretty()
 
 - Update user with extra golf field in sports array whose name is "Steve Ortega".
 
-Ans--db.users.update({name:"Steve Ortega"},{$set{"sports":"golf"}})
+Ans--db.users.update({name:"Steve Ortega"},{$push:{"sports":"golf"}})
 
 
 - Find all users who play either 'football' or 'cricket'.
@@ -273,3 +273,5 @@ Ans--db.users.update({name:"Steve Ortega"},{$set{"sports":"golf"}})
 Ans--db.users.find({sports:{$in:["football","cricket"]}})
 
 - Find all users whose name includes 'ri' in their name.
+
+Ans-- db.users.find({name:/ri/i})
